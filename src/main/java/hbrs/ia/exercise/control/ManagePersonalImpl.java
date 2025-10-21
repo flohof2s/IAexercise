@@ -28,18 +28,6 @@ public class ManagePersonalImpl implements ManagePersonal {
         this.controller.closeConnection();
     }
 
-    public void createSocialPerformanceRecord(SocialPerformanceRecord record) {
-        this.controller.openConnection();
-
-        try {
-            this.controller.createSocialPerformanceRecord(record);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-        this.controller.closeConnection();
-    }
-
     @Override
     public void addSocialPerformanceRecord(SocialPerformanceRecord record, SalesMan salesMan) {
         this.controller.openConnection();
@@ -84,6 +72,67 @@ public class ManagePersonalImpl implements ManagePersonal {
         this.controller.closeConnection();
 
         return sm;
+    }
+
+    @Override
+    public List<SocialPerformanceRecord> readAllSocialPerformanceRecord() {
+        this.controller.openConnection();
+        List<SocialPerformanceRecord> srList = null;
+        try{
+            srList = this.controller.listSocialPerformanceRecord();
+        }catch(Exception e){
+            throw new RuntimeException(e);
+        }
+
+        this.controller.closeConnection();
+        return srList;
+    }
+
+    @Override
+    public void deleteSalesMan(SalesMan sm) {
+        this.controller.openConnection();
+
+        try{
+            List<SocialPerformanceRecord> sprList = this.readSocialPerformanceRecord(sm);
+            for(SocialPerformanceRecord spr : sprList){
+                this.controller.deleteSocialPerformanceRecord(spr.getId());
+            }
+            this.controller.deleteSalesMan(sm.getId());
+        }catch(Exception e){
+            throw new RuntimeException(e);
+        }
+
+        this.controller.closeConnection();
+    }
+
+    @Override
+    public void deleteSocialPerformanceRecord(SocialPerformanceRecord record) {
+        this.controller.openConnection();
+
+        try{
+            this.controller.deleteSocialPerformanceRecord(record.getId());
+        }catch( Exception e){
+            throw new RuntimeException(e);
+        }
+
+        this.controller.closeConnection();
+    }
+
+    @Override
+    public void deleteAllSalesMan(){
+        List<SalesMan> smList = this.readAllSalesMen();
+
+        for(SalesMan sm : smList){
+            this.deleteSalesMan(sm);
+        }
+    }
+
+    @Override
+    public void deleteAllSocialPerformanceRecord(){
+        List<SocialPerformanceRecord> sprList = this.readAllSocialPerformanceRecord();
+        for(SocialPerformanceRecord spr : sprList){
+            this.deleteSocialPerformanceRecord(spr);
+        }
     }
 
     @Override

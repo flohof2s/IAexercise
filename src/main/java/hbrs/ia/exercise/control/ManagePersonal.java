@@ -18,6 +18,12 @@ public interface ManagePersonal {
     public List<SalesMan> readAllSalesMen();
 
     public List<SocialPerformanceRecord> readSocialPerformanceRecord( SalesMan salesMan );
+    public List<SocialPerformanceRecord> readAllSocialPerformanceRecord();
     // Remark: How do you integrate the year?
 
+    public void deleteSalesMan( SalesMan salesMan );
+    public void deleteAllSalesMan();
+
+    public void deleteSocialPerformanceRecord( SocialPerformanceRecord record );
+    public void deleteAllSocialPerformanceRecord();
 }

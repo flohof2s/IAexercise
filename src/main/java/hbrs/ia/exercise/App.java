@@ -13,12 +13,7 @@ import hbrs.ia.exercise.persistence.MongoDBControllerInterface;
 public class App {
     public static void main(String[] args) {
         MongoDBControllerInterface mongoDBController = new MongoDBControllerImpl();
-        mongoDBController.openConnection();
-        mongoDBController.deleteAllSalesMan();
-        mongoDBController.deleteAllSocialPerformanceRecord();
-        mongoDBController.closeConnection();
-
-        ManagePersonalImpl managePersonal = new ManagePersonalImpl(mongoDBController);
+        ManagePersonal managePersonal = new ManagePersonalImpl(mongoDBController);
 
         SalesMan sm1 = new SalesMan(0,"Fabian Lohoff","fabian.lohoff@smail.inf.h-brs.de","017698765","11.07.2002");
         SalesMan sm2 = new SalesMan(1,"Kilian Müller","kilian.mueller@smail.inf.h-brs.de","01934567","31.12.2006");
@@ -31,15 +26,17 @@ public class App {
         SocialPerformanceRecord spr5 = new SocialPerformanceRecord(4,1,"2024",7.8);
         SocialPerformanceRecord spr6 = new SocialPerformanceRecord(5,1,"2025",2.9);
 
+        managePersonal.deleteAllSalesMan();
+
         managePersonal.createSalesMan(sm1);
         managePersonal.createSalesMan(sm2);
 
-        managePersonal.createSocialPerformanceRecord(spr1);
-        managePersonal.createSocialPerformanceRecord(spr2);
-        managePersonal.createSocialPerformanceRecord(spr3);
-        managePersonal.createSocialPerformanceRecord(spr4);
-        managePersonal.createSocialPerformanceRecord(spr5);
-        managePersonal.createSocialPerformanceRecord(spr6);
+        managePersonal.addSocialPerformanceRecord(spr1,sm1);
+        managePersonal.addSocialPerformanceRecord(spr2,sm1);
+        managePersonal.addSocialPerformanceRecord(spr3,sm1);
+        managePersonal.addSocialPerformanceRecord(spr4,sm2);
+        managePersonal.addSocialPerformanceRecord(spr5,sm2);
+        managePersonal.addSocialPerformanceRecord(spr6,sm2);
 
         System.out.println(managePersonal.readSalesMan(0).getName());
         System.out.println(managePersonal.readSalesMan(1).getName());
