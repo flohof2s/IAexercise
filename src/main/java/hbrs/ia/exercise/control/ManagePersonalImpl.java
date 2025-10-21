@@ -90,19 +90,17 @@ public class ManagePersonalImpl implements ManagePersonal {
 
     @Override
     public void deleteSalesMan(SalesMan sm) {
-        this.controller.openConnection();
-
         try{
             List<SocialPerformanceRecord> sprList = this.readSocialPerformanceRecord(sm);
+            this.controller.openConnection();
             for(SocialPerformanceRecord spr : sprList){
                 this.controller.deleteSocialPerformanceRecord(spr.getId());
             }
             this.controller.deleteSalesMan(sm.getId());
+            this.controller.closeConnection();
         }catch(Exception e){
             throw new RuntimeException(e);
         }
-
-        this.controller.closeConnection();
     }
 
     @Override
