@@ -21,6 +21,9 @@ public interface ManagePersonal {
     public List<SocialPerformanceRecord> readAllSocialPerformanceRecord();
     // Remark: How do you integrate the year?
 
+    public void updateSalesMan(int id, SalesMan salesMan);
+    public void updateSocialPerformanceRecord(int id, SocialPerformanceRecord record);
+
     public void deleteSalesMan( SalesMan salesMan );
     public void deleteAllSalesMan();
 
