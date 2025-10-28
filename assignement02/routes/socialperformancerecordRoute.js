@@ -15,8 +15,8 @@ router.get("/",async (req,res)=>{
 //GET by id
 router.get("/:id",async (req,res)=>{
     try{
-        const id = req.params.id;
-        const spr = await SocialPerformanceRecord.findOne({_id: id});
+        const id = parseInt(req.params.id);
+        const spr = await SocialPerformanceRecord.findOne({id: id});
         res.status(200).json(spr);
     } catch(error){
         res.status(500).json(error);
@@ -26,7 +26,7 @@ router.get("/:id",async (req,res)=>{
 //GET by SalesManId
 router.get("/salesman/:id",async (req,res)=>{
     try{
-        const salesManId = req.params.id;
+        const salesManId = parseInt(req.params.id);
         const sprList = await SocialPerformanceRecord.find({salesManId: salesManId});
         res.status(200).json(sprList);
     } catch(error){

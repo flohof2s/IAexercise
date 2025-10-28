@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const SalesMan = require('../models/salesman')
+const computeBonusSalary = require('../controller/utils');
 
 //GET List
 router.get("/",async (req,res)=>{
@@ -15,9 +16,21 @@ router.get("/",async (req,res)=>{
 //GET by id
 router.get("/:id",async (req,res)=>{
     try{
-        const id = req.params.id;
-        const salesMan = await SalesMan.findOne({_id: id});
+        const id = parseInt(req.params.id);
+        const salesMan = await SalesMan.findOne({id: id});
         res.status(200).json(salesMan);
+    } catch(error){
+        res.status(500).json(error);
+    }
+});
+
+//GET bonus salary by id
+router.get("/:id/bonussalary",async (req,res)=>{
+    try{
+        const id = parseInt(req.params.id);
+        const salesMan = await SalesMan.findOne({id: id});
+        const bonusSalary = await computeBonusSalary(salesMan);
+        res.status(200).json(bonusSalary);
     } catch(error){
         res.status(500).json(error);
     }
