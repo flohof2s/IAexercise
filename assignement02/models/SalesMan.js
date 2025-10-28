@@ -2,6 +2,10 @@ const mongoose = require('mongoose')
 
 const SalesManSchema = mongoose.Schema(
     {
+        id:{
+            type: Number,
+            required: true
+        },
         name : {
             type: String,
             required: true
@@ -25,6 +29,6 @@ const SalesManSchema = mongoose.Schema(
     }
 )
 
-const SalesMan = mongoose.model('salesmen',SalesManSchema);
+const SalesMan = mongoose.model('SalesMan',SalesManSchema);
 
 module.exports = SalesMan;
