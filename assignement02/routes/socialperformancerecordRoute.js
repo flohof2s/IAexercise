@@ -38,8 +38,19 @@ router.get("/salesman/:id",async (req,res)=>{
 router.post("/",async (req,res)=>{
     try{
         const spr = SocialPerformanceRecord(req.body);
-        const savedSpr = spr.save();
+        const savedSpr = await spr.save();
         res.status(200).json(savedSpr);
+    } catch(error){
+        res.status(500).json(error)
+    }
+});
+
+//DELETE delete
+router.delete("/:id",async (req,res)=>{
+    try{
+        const id = parseInt(req.params.id);
+        const spr = await SocialPerformanceRecord.deleteMany({id:id})
+        res.status(200).json(spr);
     } catch(error){
         res.status(500).json(error)
     }

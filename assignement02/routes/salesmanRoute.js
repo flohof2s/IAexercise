@@ -40,8 +40,19 @@ router.get("/:id/bonussalary",async (req,res)=>{
 router.post("/",async (req,res)=>{
     try{
         const salesman = SalesMan(req.body);
-        const savedSalesMan = salesman.save();
+        const savedSalesMan = await salesman.save();
         res.status(200).json(savedSalesMan);
+    } catch(error){
+        res.status(500).json(error)
+    }
+});
+
+//DELETE delete
+router.delete("/:id",async (req,res)=>{
+    try{
+        const id = parseInt(req.params.id);
+        const salesman = await SalesMan.deleteMany({id:id})
+        res.status(200).json(salesman);
     } catch(error){
         res.status(500).json(error)
     }
