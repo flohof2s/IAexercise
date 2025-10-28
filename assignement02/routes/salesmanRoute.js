@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const SalesMan = require('../models/salesman')
 const computeBonusSalary = require('../controller/utils');
+const eventBus = require('../rx/eventBus');
 
 //GET List
 router.get("/",async (req,res)=>{
@@ -41,6 +42,13 @@ router.post("/",async (req,res)=>{
     try{
         const salesman = SalesMan(req.body);
         const savedSalesMan = await salesman.save();
+
+        // RxJS-Event auslösen
+        eventBus.emit({
+            type: 'SALESMAN_CREATED',
+            payload: savedSalesMan,
+            ts: Date.now(),
+        });
         res.status(200).json(savedSalesMan);
     } catch(error){
         res.status(500).json(error)
