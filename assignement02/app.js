@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
+const swaggerUi = require("swagger-ui-express");
+const openapiSpec = require("./swagger");
 
 const app = express();
 
@@ -12,9 +14,11 @@ app.use(cookieParser('dev-secret'));
 app.use(cors());
 app.use(express.json());
 
-app.use('/api/salesman', require('./routes/salesmanRoute'));
-app.use('/api/socialperformancerecord', require('./routes/socialperformancerecordRoute'));
+app.use('/api/salesmen', require('./routes/salesmanRoute'));
+app.use('/api/spr', require('./routes/socialperformancerecordRoute'));
 app.use('/auth', require('./routes/authRoutes'));
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(openapiSpec));
 
 app.get("/",(req,res)=>{
     res.send("Welcome at Test API for Integration Architecture");

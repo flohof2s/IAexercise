@@ -3,6 +3,7 @@ const router = express.Router();
 const SalesMan = require('../models/salesman')
 const computeBonusSalary = require('../controller/utils');
 const eventBus = require('../rx/eventBus');
+const SocialPerformanceRecord = require('../models/SocialPerformanceRecord');
 
 //GET List
 router.get("/",async (req,res)=>{
@@ -55,6 +56,27 @@ router.post("/",async (req,res)=>{
     }
 });
 
+//UPDATE by id
+router.put("/:id", async (req, res) => {
+    try {
+        const id = parseInt(req.params.id);
+        const updatedSalesMan = await SalesMan.findOneAndUpdate(
+        { id: id },               
+        { $set: req.body },        
+        { new: true }            
+        );
+
+        if (!updatedSalesMan) {
+        return res.status(404).json({ message: "SalesMan not found" });
+        }
+
+        res.status(200).json(updatedSalesMan);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+
 //DELETE delete
 router.delete("/:id",async (req,res)=>{
     try{
@@ -63,6 +85,17 @@ router.delete("/:id",async (req,res)=>{
         res.status(200).json(salesman);
     } catch(error){
         res.status(500).json(error)
+    }
+});
+
+//DELETE all
+router.delete("/",async (req,res)=>{
+    try{
+        await SocialPerformanceRecord.deleteMany();
+        await SalesMan.deleteMany();
+        res.status(200).send();
+    } catch(error){
+        res.status(500).json(error);
     }
 });
 

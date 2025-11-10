@@ -45,6 +45,26 @@ router.post("/",async (req,res)=>{
     }
 });
 
+//UPDATE by id
+router.put("/:id", async (req, res) => {
+    try {
+        const id = parseInt(req.params.id);
+        const updatedSPR = await SocialPerformanceRecord.findOneAndUpdate(
+        { id: id },               
+        { $set: req.body },        
+        { new: true }            
+        );
+
+        if (!updatedSPR) {
+        return res.status(404).json({ message: "SocialPerformanceRecord not found" });
+        }
+
+        res.status(200).json(updatedSPR);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 //DELETE delete
 router.delete("/:id",async (req,res)=>{
     try{
@@ -53,6 +73,16 @@ router.delete("/:id",async (req,res)=>{
         res.status(200).json(spr);
     } catch(error){
         res.status(500).json(error)
+    }
+});
+
+//DELETE all
+router.delete("/",async (req,res)=>{
+    try{
+        await SocialPerformanceRecord.deleteMany();
+        res.status(200).send();
+    } catch(error){
+        res.status(500).json(error);
     }
 });
 

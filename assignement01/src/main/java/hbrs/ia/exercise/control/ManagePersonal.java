@@ -1,4 +1,5 @@
 package hbrs.ia.exercise.control;
+
 import hbrs.ia.exercise.entities.*;
 
 import java.util.List;
@@ -8,25 +9,40 @@ import java.util.List;
  * Are there any CRUD-operations missing?
  */
 public interface ManagePersonal {
-    public void createSalesMan( SalesMan record );
 
-    public void addSocialPerformanceRecord(SocialPerformanceRecord record , SalesMan salesMan );
-    // Remark: an SocialPerformanceRecord corresponds to part B of a bonus sheet
+    // done
+    public void createSalesMan(SalesMan record);
 
-    public SalesMan readSalesMan( int sid );
+    // done
+    public void addSocialPerformanceRecord(SocialPerformanceRecord record, SalesMan salesMan);
 
+    // done
+    public SalesMan readSalesMan(int sid);
+
+    // done
     public List<SalesMan> readAllSalesMen();
 
-    public List<SocialPerformanceRecord> readSocialPerformanceRecord( SalesMan salesMan );
-    public List<SocialPerformanceRecord> readAllSocialPerformanceRecord();
-    // Remark: How do you integrate the year?
+    // done
+    public List<SocialPerformanceRecord> readSocialPerformanceRecord(SalesMan salesMan);
 
+    // done
+    public List<SocialPerformanceRecord> readAllSocialPerformanceRecord();
+
+    // done
     public void updateSalesMan(int id, SalesMan salesMan);
+
+    // done
     public void updateSocialPerformanceRecord(int id, SocialPerformanceRecord record);
 
-    public void deleteSalesMan( SalesMan salesMan );
+    // done
+    public void deleteSalesMan(SalesMan salesMan);
+
+    // done
     public void deleteAllSalesMan();
 
-    public void deleteSocialPerformanceRecord( SocialPerformanceRecord record );
+    // done
+    public void deleteSocialPerformanceRecord(SocialPerformanceRecord record);
+
+    // done
     public void deleteAllSocialPerformanceRecord();
 }
