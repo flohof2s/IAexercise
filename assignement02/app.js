@@ -19,6 +19,10 @@ app.use('/api/spr', require('./routes/socialperformancerecordRoute'));
 app.use('/auth', require('./routes/authRoutes'));
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(openapiSpec));
+app.get("/api-docs.json", (req, res) => {
+  res.setHeader("Content-Type", "application/json");
+  res.send(openapiSpec);
+});
 
 app.get("/",(req,res)=>{
     res.send("Welcome at Test API for Integration Architecture");
