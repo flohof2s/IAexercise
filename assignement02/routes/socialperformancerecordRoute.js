@@ -79,8 +79,8 @@ router.delete("/:id",async (req,res)=>{
 //DELETE all
 router.delete("/",async (req,res)=>{
     try{
-        await SocialPerformanceRecord.deleteMany();
-        res.status(200).send();
+        const response = await SocialPerformanceRecord.deleteMany();
+        res.status(200).json(response);
     } catch(error){
         res.status(500).json(error);
     }

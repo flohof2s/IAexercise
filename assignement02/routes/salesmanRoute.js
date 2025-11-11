@@ -20,7 +20,13 @@ router.get("/:id",async (req,res)=>{
     try{
         const id = parseInt(req.params.id);
         const salesMan = await SalesMan.findOne({id: id});
-        res.status(200).json(salesMan);
+        if(salesMan == null){
+            res.status(404).json({ message: "SalesMan not found with id: "+id });
+        }
+        else{
+            res.status(200).json(salesMan);
+        }
+        
     } catch(error){
         res.status(500).json(error);
     }
@@ -32,7 +38,7 @@ router.get("/:id/bonussalary",async (req,res)=>{
         const id = parseInt(req.params.id);
         const salesMan = await SalesMan.findOne({id: id});
         const bonusSalary = await computeBonusSalary(salesMan);
-        res.status(200).json(bonusSalary);
+        res.status(200).json({"bonusSalary":bonusSalary});
     } catch(error){
         res.status(500).json(error);
     }
@@ -92,8 +98,8 @@ router.delete("/:id",async (req,res)=>{
 router.delete("/",async (req,res)=>{
     try{
         await SocialPerformanceRecord.deleteMany();
-        await SalesMan.deleteMany();
-        res.status(200).send();
+        const result = await SalesMan.deleteMany();
+        res.status(200).json(result);
     } catch(error){
         res.status(500).json(error);
     }

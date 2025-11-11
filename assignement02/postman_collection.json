@@ -1,0 +1,2109 @@
+{
+	"info": {
+		"_postman_id": "ad826df3-38f2-4be9-a23d-33ffacb1068c",
+		"name": "SalesMan API",
+		"description": "Dokumentation der SalesMan-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18909160"
+	},
+	"item": [
+		{
+			"name": "salesmen",
+			"item": [
+				{
+					"name": "{id}",
+					"item": [
+						{
+							"name": "bonussalary",
+							"item": [
+								{
+									"name": "Bonusgehalt eines SalesMan abrufen",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"let data;\r",
+													"try {\r",
+													"  data = pm.response.json();\r",
+													"} catch (e) {\r",
+													"  data = null;\r",
+													"}\r",
+													"\r",
+													"pm.test(\"Data not null\",function(){\r",
+													"    pm.expect(data==null).to.eql(false);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"bonusSalary vorhanden\",function(){\r",
+													"    pm.expect(data.bonusSalary).to.be.greaterThanOrEqual(0);\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {},
+												"requests": {}
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/salesmen/:id/bonussalary",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"salesmen",
+												":id",
+												"bonussalary"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "{{salesManId}}",
+													"description": "Eindeutige SalesMan-ID"
+												}
+											]
+										},
+										"description": "Berechnet und gibt das Bonusgehalt des angegebenen SalesMan zurück."
+									},
+									"response": [
+										{
+											"name": "Erfolgreich berechnet",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/salesmen/:id/bonussalary",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"salesmen",
+														":id",
+														"bonussalary"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "500"
+										},
+										{
+											"name": "Serverfehler",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/salesmen/:id/bonussalary",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"salesmen",
+														":id",
+														"bonussalary"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "Internal Server Error",
+											"code": 500,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"message\": \"string\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "SalesMan nach id abrufen",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let data;\r",
+											"try {\r",
+											"  data = pm.response.json();\r",
+											"} catch (e) {\r",
+											"  data = null;\r",
+											"}\r",
+											"\r",
+											"// Werte in Collection-Variablen speichern\r",
+											"if (data && data.id) {\r",
+											"  pm.environment.set(\"salesManId\", String(data.id));\r",
+											"}\r",
+											"\r",
+											"// Umgebung/Collection prüfen\r",
+											"pm.test(\"salesManId gesetzt\", function () {\r",
+											"  pm.expect(pm.environment.get(\"salesManId\")).to.be.a(\"string\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Data not null\",function(){\r",
+											"    pm.expect(data==null).to.eql(false);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/salesmen/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"salesmen",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{salesManId}}",
+											"description": "Eindeutige SalesMan-ID (nicht MongoDB _id)"
+										}
+									]
+								},
+								"description": "Gibt den SalesMan mit der angegebenen ID zurück."
+							},
+							"response": [
+								{
+									"name": "Gefunden",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/salesmen/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"salesmen",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": 101,\n  \"name\": \"Max Mustermann\",\n  \"salary\": 42000,\n  \"birthday\": \"1995-07-12\",\n  \"email\": \"max@example.com\",\n  \"phone\": \"+49-160-1234567\"\n}"
+								},
+								{
+									"name": "Serverfehler",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/salesmen/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"salesmen",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"message\": \"string\"\n}"
+								}
+							]
+						},
+						{
+							"name": "SalesMan per id aktualisieren",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let data;\r",
+											"try {\r",
+											"  data = pm.response.json();\r",
+											"} catch (e) {\r",
+											"  data = null;\r",
+											"}\r",
+											"\r",
+											"// Werte in Collection-Variablen speichern\r",
+											"if (data && data.id) {\r",
+											"  pm.environment.set(\"salesManId\", String(data.id));\r",
+											"}\r",
+											"\r",
+											"pm.test(\"Data not null\",function(){\r",
+											"    pm.expect(data==null).to.eql(false);\r",
+											"});\r",
+											"\r",
+											"// Umgebung/Collection prüfen\r",
+											"pm.test(\"salesManId gesetzt\", function () {\r",
+											"  pm.expect(pm.environment.get(\"salesManId\")).to.be.a(\"string\");\r",
+											"});\r",
+											"\r",
+											"// Name wurde aktualisiert\r",
+											"pm.test(\"Name wurde aktualisiert\",function(){\r",
+											"    pm.expect(data.name).to.be.eql(pm.environment.get(\"updateSalesManName\"));\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"{{updateSalesManName}}\",\n  \"salary\": 98765,\n  \"birthday\": \"1995-07-12\",\n  \"email\": \"max@example.com\",\n  \"phone\": \"+49-160-1234567\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/salesmen/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"salesmen",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{salesManId}}",
+											"description": "Eindeutige SalesMan-ID (nicht MongoDB _id)"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Aktualisiert",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"Max Mustermann\",\n  \"salary\": 42000,\n  \"birthday\": \"1995-07-12\",\n  \"email\": \"max@example.com\",\n  \"phone\": \"+49-160-1234567\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/salesmen/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"salesmen",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": 101,\n  \"name\": \"Max Mustermann\",\n  \"salary\": 42000,\n  \"birthday\": \"1995-07-12\",\n  \"email\": \"max@example.com\",\n  \"phone\": \"+49-160-1234567\"\n}"
+								},
+								{
+									"name": "Nicht gefunden",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"Max Mustermann\",\n  \"salary\": 42000,\n  \"birthday\": \"1995-07-12\",\n  \"email\": \"max@example.com\",\n  \"phone\": \"+49-160-1234567\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/salesmen/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"salesmen",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"message\": \"string\"\n}"
+								},
+								{
+									"name": "Serverfehler",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"Max Mustermann\",\n  \"salary\": 42000,\n  \"birthday\": \"1995-07-12\",\n  \"email\": \"max@example.com\",\n  \"phone\": \"+49-160-1234567\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/salesmen/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"salesmen",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"message\": \"string\"\n}"
+								}
+							]
+						},
+						{
+							"name": "SalesMan nach id löschen",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let data;\r",
+											"try {\r",
+											"  data = pm.response.json();\r",
+											"} catch (e) {\r",
+											"  data = null;\r",
+											"}\r",
+											"\r",
+											"pm.test(\"SalesMan wurde gelöscht\",function(){\r",
+											"    pm.expect(data.deletedCount).to.be.eql(1);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Data not null\",function(){\r",
+											"    pm.expect(data==null).to.eql(false);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/salesmen/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"salesmen",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{salesManId}}",
+											"description": "Eindeutige SalesMan-ID (nicht MongoDB _id)"
+										}
+									]
+								},
+								"description": "Löscht einen SalesMan anhand seiner ID."
+							},
+							"response": [
+								{
+									"name": "Gelöscht",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/salesmen/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"salesmen",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"acknowledged\": true,\n  \"deletedCount\": 1\n}"
+								},
+								{
+									"name": "Serverfehler",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/salesmen/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"salesmen",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"message\": \"string\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Alle SalesMen auflisten",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let data = null;\r",
+									"try { data = pm.response.json(); } catch (e) { /* ok, kein JSON */ }\r",
+									"\r",
+									"pm.test(\"Antwort ist eine Liste (Array)\", function () {\r",
+									"  pm.expect(Array.isArray(data)).to.eql(true);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Data not null\",function(){\r",
+									"    pm.expect(data==null).to.eql(false);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/salesmen/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"salesmen",
+								""
+							]
+						},
+						"description": "Gibt eine Liste aller SalesMen zurück."
+					},
+					"response": [
+						{
+							"name": "Liste",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/salesmen",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"salesmen"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"id\": 101,\n    \"name\": \"Max Mustermann\",\n    \"salary\": 42000,\n    \"birthday\": \"1995-07-12\",\n    \"email\": \"max@example.com\",\n    \"phone\": \"+49-160-1234567\"\n  },\n  {\n    \"id\": 101,\n    \"name\": \"Max Mustermann\",\n    \"salary\": 42000,\n    \"birthday\": \"1995-07-12\",\n    \"email\": \"max@example.com\",\n    \"phone\": \"+49-160-1234567\"\n  }\n]"
+						},
+						{
+							"name": "Serverfehler",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/salesmen",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"salesmen"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"message\": \"string\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Neuen SalesMan anlegen",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let data;\r",
+									"try {\r",
+									"  data = pm.response.json();\r",
+									"} catch (e) {\r",
+									"  data = null;\r",
+									"}\r",
+									"\r",
+									"// Werte in Collection-Variablen speichern\r",
+									"if (data && data.id) {\r",
+									"  pm.environment.set(\"salesManId\", String(data.id));\r",
+									"}\r",
+									"\r",
+									"// Umgebung/Collection prüfen\r",
+									"pm.test(\"salesManId gesetzt\", function () {\r",
+									"  pm.expect(pm.environment.get(\"salesManId\")).to.be.a(\"string\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Data not null\",function(){\r",
+									"    pm.expect(data==null).to.eql(false);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 101,\n  \"name\": \"Max Mustermann\",\n  \"salary\": 42000,\n  \"birthday\": \"1995-07-12\",\n  \"email\": \"max@example.com\",\n  \"phone\": \"+49-160-1234567\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/salesmen",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"salesmen"
+							]
+						},
+						"description": "Erstellt einen neuen SalesMan und löst ein RxJS-Event aus."
+					},
+					"response": [
+						{
+							"name": "Erfolgreich erstellt",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": 101,\n  \"name\": \"Max Mustermann\",\n  \"salary\": 42000,\n  \"birthday\": \"1995-07-12\",\n  \"email\": \"max@example.com\",\n  \"phone\": \"+49-160-1234567\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/salesmen",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"salesmen"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"id\": 101,\n  \"name\": \"Max Mustermann\",\n  \"salary\": 42000,\n  \"birthday\": \"1995-07-12\",\n  \"email\": \"max@example.com\",\n  \"phone\": \"+49-160-1234567\"\n}"
+						},
+						{
+							"name": "Serverfehler",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": 101,\n  \"name\": \"Max Mustermann\",\n  \"salary\": 42000,\n  \"birthday\": \"1995-07-12\",\n  \"email\": \"max@example.com\",\n  \"phone\": \"+49-160-1234567\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/salesmen",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"salesmen"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"message\": \"string\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Alle SalesMen und SocialPerformanceRecords löschen",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let data;\r",
+									"try {\r",
+									"  data = pm.response.json();\r",
+									"} catch (e) {\r",
+									"  data = null;\r",
+									"}\r",
+									"\r",
+									"pm.test(\"SalesMan wurde gelöscht\",function(){\r",
+									"    pm.expect(data.deletedCount).to.be.greaterThanOrEqual(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Data not null\",function(){\r",
+									"    pm.expect(data==null).to.eql(false);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/salesmen",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"salesmen"
+							]
+						},
+						"description": "Löscht alle Einträge aus den Collections SalesMan und SocialPerformanceRecord."
+					},
+					"response": [
+						{
+							"name": "Alle Einträge gelöscht",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/salesmen",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"salesmen"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Serverfehler",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/salesmen",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"salesmen"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"message\": \"string\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "spr",
+			"item": [
+				{
+					"name": "{id}",
+					"item": [
+						{
+							"name": "SocialPerformanceRecord nach id abrufen",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let data;\r",
+											"try {\r",
+											"  data = pm.response.json();\r",
+											"} catch (e) {\r",
+											"  data = null;\r",
+											"}\r",
+											"\r",
+											"// Werte in Collection-Variablen speichern\r",
+											"if (data && data.id) {\r",
+											"  pm.environment.set(\"sprId\", String(data.id));\r",
+											"}\r",
+											"\r",
+											"// Umgebung/Collection prüfen\r",
+											"pm.test(\"sprId gesetzt\", function () {\r",
+											"  pm.expect(pm.environment.get(\"sprId\")).to.be.a(\"string\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Data not null\",function(){\r",
+											"    pm.expect(data==null).to.eql(false);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/spr/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"spr",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{sprId}}",
+											"description": "Eindeutige SocialPerformanceRecord-ID (nicht MongoDB _id)"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Gefunden",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/spr/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"spr",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": 101,\n  \"year\": 2024,\n  \"score\": 7.5,\n  \"salesManId\": 5\n}"
+								},
+								{
+									"name": "Serverfehler",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/spr/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"spr",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"message\": \"string\"\n}"
+								}
+							]
+						},
+						{
+							"name": "SocialPerformanceRecord per id aktualisieren",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let data;\r",
+											"try {\r",
+											"  data = pm.response.json();\r",
+											"} catch (e) {\r",
+											"  data = null;\r",
+											"}\r",
+											"\r",
+											"// Werte in Collection-Variablen speichern\r",
+											"if (data && data.id) {\r",
+											"  pm.environment.set(\"salesManId\", String(data.id));\r",
+											"}\r",
+											"\r",
+											"pm.test(\"Data not null\",function(){\r",
+											"    pm.expect(data==null).to.eql(false);\r",
+											"});\r",
+											"\r",
+											"// Umgebung/Collection prüfen\r",
+											"pm.test(\"sprId gesetzt\", function () {\r",
+											"  pm.expect(pm.environment.get(\"sprId\")).to.be.a(\"string\");\r",
+											"});\r",
+											"\r",
+											"// Name wurde aktualisiert\r",
+											"pm.test(\"Year wurde aktualisiert\",function(){\r",
+											"    pm.expect(String(data.year)).to.be.eql(pm.environment.get(\"updateSprYear\"));\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"year\": {{updateSprYear}},\n  \"score\": 7.5,\n  \"salesManId\": {{salesManId}}\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/spr/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"spr",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{sprId}}",
+											"description": "Eindeutige SocialPerformanceRecord-ID (nicht MongoDB _id)"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Aktualisiert",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"year\": 2024,\n  \"score\": 7.5,\n  \"salesManId\": 5\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/spr/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"spr",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": 101,\n  \"year\": 2024,\n  \"score\": 7.5,\n  \"salesManId\": 5\n}"
+								},
+								{
+									"name": "Nicht gefunden",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"year\": 2024,\n  \"score\": 7.5,\n  \"salesManId\": 5\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/spr/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"spr",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"message\": \"string\"\n}"
+								},
+								{
+									"name": "Serverfehler",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"year\": 2024,\n  \"score\": 7.5,\n  \"salesManId\": 5\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/spr/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"spr",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"message\": \"string\"\n}"
+								}
+							]
+						},
+						{
+							"name": "SocialPerformanceRecord nach id löschen",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/spr/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"spr",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1552",
+											"description": "Eindeutige SocialPerformanceRecord-ID (nicht MongoDB _id)"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Gelöscht",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/spr/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"spr",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"acknowledged\": true,\n  \"deletedCount\": 1\n}"
+								},
+								{
+									"name": "Serverfehler",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/spr/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"spr",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"message\": \"string\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "salesman",
+					"item": [
+						{
+							"name": "{id}",
+							"item": [
+								{
+									"name": "Alle SocialPerformanceRecords eines SalesMan abrufen",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"let data = null;\r",
+													"try { data = pm.response.json(); } catch (e) { /* ok, kein JSON */ }\r",
+													"\r",
+													"pm.test(\"Antwort ist eine Liste (Array)\", function () {\r",
+													"  pm.expect(Array.isArray(data)).to.eql(true);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Data not null\",function(){\r",
+													"    pm.expect(data==null).to.eql(false);\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {},
+												"requests": {}
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/spr/salesman/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"spr",
+												"salesman",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "1552",
+													"description": "SalesMan-ID, zu der die Records gehören"
+												}
+											]
+										},
+										"description": "Gibt alle SocialPerformanceRecords für den angegebenen SalesMan zurück."
+									},
+									"response": [
+										{
+											"name": "Liste",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/spr/salesman/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"spr",
+														"salesman",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "[\n  {\n    \"id\": 101,\n    \"year\": 2024,\n    \"score\": 7.5,\n    \"salesManId\": 5\n  },\n  {\n    \"id\": 101,\n    \"year\": 2024,\n    \"score\": 7.5,\n    \"salesManId\": 5\n  }\n]"
+										},
+										{
+											"name": "Serverfehler",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/spr/salesman/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"spr",
+														"salesman",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "Internal Server Error",
+											"code": 500,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"message\": \"string\"\n}"
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Alle SocialPerformanceRecords auflisten",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let data = null;\r",
+									"try { data = pm.response.json(); } catch (e) { /* ok, kein JSON */ }\r",
+									"\r",
+									"pm.test(\"Antwort ist eine Liste (Array)\", function () {\r",
+									"  pm.expect(Array.isArray(data)).to.eql(true);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Data not null\",function(){\r",
+									"    pm.expect(data==null).to.eql(false);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/spr",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"spr"
+							]
+						},
+						"description": "Gibt eine Liste aller SocialPerformanceRecords zurück."
+					},
+					"response": [
+						{
+							"name": "Liste",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/spr",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"spr"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"id\": 101,\n    \"year\": 2024,\n    \"score\": 7.5,\n    \"salesManId\": 5\n  },\n  {\n    \"id\": 101,\n    \"year\": 2024,\n    \"score\": 7.5,\n    \"salesManId\": 5\n  }\n]"
+						},
+						{
+							"name": "Serverfehler",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/spr",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"spr"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"message\": \"string\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Neuen SocialPerformanceRecord anlegen",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let data;\r",
+									"try {\r",
+									"  data = pm.response.json();\r",
+									"} catch (e) {\r",
+									"  data = null;\r",
+									"}\r",
+									"\r",
+									"// Werte in Collection-Variablen speichern\r",
+									"if (data && data.id) {\r",
+									"  pm.environment.set(\"sprId\", String(data.id));\r",
+									"}\r",
+									"\r",
+									"// Umgebung/Collection prüfen\r",
+									"pm.test(\"sprId gesetzt\", function () {\r",
+									"  pm.expect(pm.environment.get(\"sprId\")).to.be.a(\"string\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Data not null\",function(){\r",
+									"    pm.expect(data==null).to.eql(false);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 202,\n  \"year\": 2024,\n  \"score\": 7.5,\n  \"salesManId\": {{salesManId}}\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/spr",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"spr"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Erfolgreich erstellt",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": 101,\n  \"year\": 2024,\n  \"score\": 7.5,\n  \"salesManId\": 5\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/spr",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"spr"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"id\": 101,\n  \"year\": 2024,\n  \"score\": 7.5,\n  \"salesManId\": 5\n}"
+						},
+						{
+							"name": "Serverfehler",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": 101,\n  \"year\": 2024,\n  \"score\": 7.5,\n  \"salesManId\": 5\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/spr",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"spr"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"message\": \"string\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Alle SocialPerformanceRecords löschen",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let data;\r",
+									"try {\r",
+									"  data = pm.response.json();\r",
+									"} catch (e) {\r",
+									"  data = null;\r",
+									"}\r",
+									"\r",
+									"pm.test(\"SPR wurde gelöscht\",function(){\r",
+									"    pm.expect(data.deletedCount).to.be.greaterThanOrEqual(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Data not null\",function(){\r",
+									"    pm.expect(data==null).to.eql(false);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/spr",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"spr"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Alle Einträge gelöscht",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/spr",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"spr"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Serverfehler",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/spr",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"spr"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"message\": \"string\"\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					"pm.test(\"Statuscode beginnt mit 2\", function () {\r",
+					"  pm.expect(Math.floor(pm.response.code / 100)).to.eql(2);\r",
+					"});\r",
+					"\r",
+					"// Content-Type prüfen\r",
+					"pm.test(\"Content-Type ist JSON\", function () {\r",
+					"  pm.response.to.have.header(\"Content-Type\");\r",
+					"  pm.response.to.be.withBody;\r",
+					"  pm.response.to.have.jsonBody();\r",
+					"});\r",
+					"\r",
+					"// Antwortzeit\r",
+					"pm.test(\"Antwortzeit < 800 ms\", function () {\r",
+					"  pm.expect(pm.response.responseTime).to.be.below(800);\r",
+					"});"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000/api "
+		}
+	]
+}

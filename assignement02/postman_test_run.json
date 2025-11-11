@@ -1,0 +1,792 @@
+{
+	"id": "ba5fb30e-e4a5-4baf-94ac-8b27ba7f297c",
+	"name": "SalesMan API",
+	"timestamp": "2025-11-11T10:33:59.298Z",
+	"collection_id": "18909160-ad826df3-38f2-4be9-a23d-33ffacb1068c",
+	"folder_id": 0,
+	"environment_id": "18909160-5f7bf46c-470d-4d33-993b-facc7f18c1c0",
+	"totalPass": 70,
+	"delay": "1000",
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2025-11-11T10:33:43.408Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "a1352acc-9971-490c-b5d8-6cc0ebe1d028",
+			"name": "Neuen SalesMan anlegen",
+			"url": "http://localhost:3000/api/salesmen",
+			"time": 7,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Statuscode beginnt mit 2": true,
+				"Content-Type ist JSON": true,
+				"Antwortzeit < 800 ms": true,
+				"salesManId gesetzt": true,
+				"Data not null": true
+			},
+			"testPassFailCounts": {
+				"Statuscode beginnt mit 2": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type ist JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Antwortzeit < 800 ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"salesManId gesetzt": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Data not null": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				7
+			],
+			"allTests": [
+				{
+					"Statuscode beginnt mit 2": true,
+					"Content-Type ist JSON": true,
+					"Antwortzeit < 800 ms": true,
+					"salesManId gesetzt": true,
+					"Data not null": true
+				}
+			]
+		},
+		{
+			"id": "9a613d40-1324-4a9d-bddb-0dd968b46060",
+			"name": "SalesMan nach id abrufen",
+			"url": "http://localhost:3000/api/salesmen/101",
+			"time": 7,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Statuscode beginnt mit 2": true,
+				"Content-Type ist JSON": true,
+				"Antwortzeit < 800 ms": true,
+				"salesManId gesetzt": true,
+				"Data not null": true
+			},
+			"testPassFailCounts": {
+				"Statuscode beginnt mit 2": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type ist JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Antwortzeit < 800 ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"salesManId gesetzt": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Data not null": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				7
+			],
+			"allTests": [
+				{
+					"Statuscode beginnt mit 2": true,
+					"Content-Type ist JSON": true,
+					"Antwortzeit < 800 ms": true,
+					"salesManId gesetzt": true,
+					"Data not null": true
+				}
+			]
+		},
+		{
+			"id": "8706fc3f-0eff-4cf7-9cf8-923299a650b3",
+			"name": "Bonusgehalt eines SalesMan abrufen",
+			"url": "http://localhost:3000/api/salesmen/101/bonussalary",
+			"time": 5,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Statuscode beginnt mit 2": true,
+				"Content-Type ist JSON": true,
+				"Antwortzeit < 800 ms": true,
+				"Data not null": true,
+				"bonusSalary vorhanden": true
+			},
+			"testPassFailCounts": {
+				"Statuscode beginnt mit 2": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type ist JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Antwortzeit < 800 ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Data not null": {
+					"pass": 1,
+					"fail": 0
+				},
+				"bonusSalary vorhanden": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Statuscode beginnt mit 2": true,
+					"Content-Type ist JSON": true,
+					"Antwortzeit < 800 ms": true,
+					"Data not null": true,
+					"bonusSalary vorhanden": true
+				}
+			]
+		},
+		{
+			"id": "4ab30fcb-db43-4ea1-b756-822509580bf1",
+			"name": "SalesMan per id aktualisieren",
+			"url": "http://localhost:3000/api/salesmen/101",
+			"time": 7,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Statuscode beginnt mit 2": true,
+				"Content-Type ist JSON": true,
+				"Antwortzeit < 800 ms": true,
+				"Data not null": true,
+				"salesManId gesetzt": true,
+				"Name wurde aktualisiert": true
+			},
+			"testPassFailCounts": {
+				"Statuscode beginnt mit 2": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type ist JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Antwortzeit < 800 ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Data not null": {
+					"pass": 1,
+					"fail": 0
+				},
+				"salesManId gesetzt": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Name wurde aktualisiert": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				7
+			],
+			"allTests": [
+				{
+					"Statuscode beginnt mit 2": true,
+					"Content-Type ist JSON": true,
+					"Antwortzeit < 800 ms": true,
+					"Data not null": true,
+					"salesManId gesetzt": true,
+					"Name wurde aktualisiert": true
+				}
+			]
+		},
+		{
+			"id": "a9bb0d4a-c30a-4fb1-907c-9bb88237f8d1",
+			"name": "Alle SalesMen auflisten",
+			"url": "http://localhost:3000/api/salesmen/",
+			"time": 6,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Statuscode beginnt mit 2": true,
+				"Content-Type ist JSON": true,
+				"Antwortzeit < 800 ms": true,
+				"Antwort ist eine Liste (Array)": true,
+				"Data not null": true
+			},
+			"testPassFailCounts": {
+				"Statuscode beginnt mit 2": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type ist JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Antwortzeit < 800 ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Antwort ist eine Liste (Array)": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Data not null": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				6
+			],
+			"allTests": [
+				{
+					"Statuscode beginnt mit 2": true,
+					"Content-Type ist JSON": true,
+					"Antwortzeit < 800 ms": true,
+					"Antwort ist eine Liste (Array)": true,
+					"Data not null": true
+				}
+			]
+		},
+		{
+			"id": "ef725cdf-2a84-4d5d-b837-232f847adc6f",
+			"name": "Neuen SocialPerformanceRecord anlegen",
+			"url": "http://localhost:3000/api/spr",
+			"time": 4,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Statuscode beginnt mit 2": true,
+				"Content-Type ist JSON": true,
+				"Antwortzeit < 800 ms": true,
+				"sprId gesetzt": true,
+				"Data not null": true
+			},
+			"testPassFailCounts": {
+				"Statuscode beginnt mit 2": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type ist JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Antwortzeit < 800 ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"sprId gesetzt": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Data not null": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				4
+			],
+			"allTests": [
+				{
+					"Statuscode beginnt mit 2": true,
+					"Content-Type ist JSON": true,
+					"Antwortzeit < 800 ms": true,
+					"sprId gesetzt": true,
+					"Data not null": true
+				}
+			]
+		},
+		{
+			"id": "7794ea98-fe78-4294-9f77-ea4d25361dd8",
+			"name": "SocialPerformanceRecord nach id abrufen",
+			"url": "http://localhost:3000/api/spr/202",
+			"time": 7,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Statuscode beginnt mit 2": true,
+				"Content-Type ist JSON": true,
+				"Antwortzeit < 800 ms": true,
+				"sprId gesetzt": true,
+				"Data not null": true
+			},
+			"testPassFailCounts": {
+				"Statuscode beginnt mit 2": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type ist JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Antwortzeit < 800 ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"sprId gesetzt": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Data not null": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				7
+			],
+			"allTests": [
+				{
+					"Statuscode beginnt mit 2": true,
+					"Content-Type ist JSON": true,
+					"Antwortzeit < 800 ms": true,
+					"sprId gesetzt": true,
+					"Data not null": true
+				}
+			]
+		},
+		{
+			"id": "348b9faf-87f5-4e49-b233-98464fb95bf1",
+			"name": "SocialPerformanceRecord per id aktualisieren",
+			"url": "http://localhost:3000/api/spr/202",
+			"time": 5,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Statuscode beginnt mit 2": true,
+				"Content-Type ist JSON": true,
+				"Antwortzeit < 800 ms": true,
+				"Data not null": true,
+				"sprId gesetzt": true,
+				"Year wurde aktualisiert": true
+			},
+			"testPassFailCounts": {
+				"Statuscode beginnt mit 2": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type ist JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Antwortzeit < 800 ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Data not null": {
+					"pass": 1,
+					"fail": 0
+				},
+				"sprId gesetzt": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Year wurde aktualisiert": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Statuscode beginnt mit 2": true,
+					"Content-Type ist JSON": true,
+					"Antwortzeit < 800 ms": true,
+					"Data not null": true,
+					"sprId gesetzt": true,
+					"Year wurde aktualisiert": true
+				}
+			]
+		},
+		{
+			"id": "22dcf7ee-99f7-4ca3-be99-28b91d923af4",
+			"name": "Alle SocialPerformanceRecords eines SalesMan abrufen",
+			"url": "http://localhost:3000/api/spr/salesman/1552",
+			"time": 5,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Statuscode beginnt mit 2": true,
+				"Content-Type ist JSON": true,
+				"Antwortzeit < 800 ms": true,
+				"Antwort ist eine Liste (Array)": true,
+				"Data not null": true
+			},
+			"testPassFailCounts": {
+				"Statuscode beginnt mit 2": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type ist JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Antwortzeit < 800 ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Antwort ist eine Liste (Array)": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Data not null": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Statuscode beginnt mit 2": true,
+					"Content-Type ist JSON": true,
+					"Antwortzeit < 800 ms": true,
+					"Antwort ist eine Liste (Array)": true,
+					"Data not null": true
+				}
+			]
+		},
+		{
+			"id": "a5c151cc-6604-4928-a39a-60db13eee478",
+			"name": "Alle SocialPerformanceRecords auflisten",
+			"url": "http://localhost:3000/api/spr",
+			"time": 5,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Statuscode beginnt mit 2": true,
+				"Content-Type ist JSON": true,
+				"Antwortzeit < 800 ms": true,
+				"Antwort ist eine Liste (Array)": true,
+				"Data not null": true
+			},
+			"testPassFailCounts": {
+				"Statuscode beginnt mit 2": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type ist JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Antwortzeit < 800 ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Antwort ist eine Liste (Array)": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Data not null": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Statuscode beginnt mit 2": true,
+					"Content-Type ist JSON": true,
+					"Antwortzeit < 800 ms": true,
+					"Antwort ist eine Liste (Array)": true,
+					"Data not null": true
+				}
+			]
+		},
+		{
+			"id": "661470a2-6487-4398-ae24-01f17e2d7b0b",
+			"name": "SocialPerformanceRecord nach id löschen",
+			"url": "http://localhost:3000/api/spr/1552",
+			"time": 6,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Statuscode beginnt mit 2": true,
+				"Content-Type ist JSON": true,
+				"Antwortzeit < 800 ms": true
+			},
+			"testPassFailCounts": {
+				"Statuscode beginnt mit 2": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type ist JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Antwortzeit < 800 ms": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				6
+			],
+			"allTests": [
+				{
+					"Statuscode beginnt mit 2": true,
+					"Content-Type ist JSON": true,
+					"Antwortzeit < 800 ms": true
+				}
+			]
+		},
+		{
+			"id": "c7652b6c-d212-4ce9-8020-685e50206c2e",
+			"name": "SalesMan nach id löschen",
+			"url": "http://localhost:3000/api/salesmen/202",
+			"time": 6,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Statuscode beginnt mit 2": true,
+				"Content-Type ist JSON": true,
+				"Antwortzeit < 800 ms": true,
+				"SalesMan wurde gelöscht": true,
+				"Data not null": true
+			},
+			"testPassFailCounts": {
+				"Statuscode beginnt mit 2": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type ist JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Antwortzeit < 800 ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"SalesMan wurde gelöscht": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Data not null": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				6
+			],
+			"allTests": [
+				{
+					"Statuscode beginnt mit 2": true,
+					"Content-Type ist JSON": true,
+					"Antwortzeit < 800 ms": true,
+					"SalesMan wurde gelöscht": true,
+					"Data not null": true
+				}
+			]
+		},
+		{
+			"id": "f7e707b1-d7e6-4013-866f-46454998cbb0",
+			"name": "Alle SocialPerformanceRecords löschen",
+			"url": "http://localhost:3000/api/spr",
+			"time": 8,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Statuscode beginnt mit 2": true,
+				"Content-Type ist JSON": true,
+				"Antwortzeit < 800 ms": true,
+				"SPR wurde gelöscht": true,
+				"Data not null": true
+			},
+			"testPassFailCounts": {
+				"Statuscode beginnt mit 2": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type ist JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Antwortzeit < 800 ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"SPR wurde gelöscht": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Data not null": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				8
+			],
+			"allTests": [
+				{
+					"Statuscode beginnt mit 2": true,
+					"Content-Type ist JSON": true,
+					"Antwortzeit < 800 ms": true,
+					"SPR wurde gelöscht": true,
+					"Data not null": true
+				}
+			]
+		},
+		{
+			"id": "665bc465-eeab-4682-b0ac-44be04ff3c13",
+			"name": "Alle SalesMen und SocialPerformanceRecords löschen",
+			"url": "http://localhost:3000/api/salesmen",
+			"time": 4,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Statuscode beginnt mit 2": true,
+				"Content-Type ist JSON": true,
+				"Antwortzeit < 800 ms": true,
+				"SalesMan wurde gelöscht": true,
+				"Data not null": true
+			},
+			"testPassFailCounts": {
+				"Statuscode beginnt mit 2": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type ist JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Antwortzeit < 800 ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"SalesMan wurde gelöscht": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Data not null": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				4
+			],
+			"allTests": [
+				{
+					"Statuscode beginnt mit 2": true,
+					"Content-Type ist JSON": true,
+					"Antwortzeit < 800 ms": true,
+					"SalesMan wurde gelöscht": true,
+					"Data not null": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 82,
+	"collection": {
+		"requests": [
+			{
+				"id": "a1352acc-9971-490c-b5d8-6cc0ebe1d028",
+				"method": "POST"
+			},
+			{
+				"id": "9a613d40-1324-4a9d-bddb-0dd968b46060",
+				"method": "GET"
+			},
+			{
+				"id": "8706fc3f-0eff-4cf7-9cf8-923299a650b3",
+				"method": "GET"
+			},
+			{
+				"id": "4ab30fcb-db43-4ea1-b756-822509580bf1",
+				"method": "PUT"
+			},
+			{
+				"id": "a9bb0d4a-c30a-4fb1-907c-9bb88237f8d1",
+				"method": "GET"
+			},
+			{
+				"id": "ef725cdf-2a84-4d5d-b837-232f847adc6f",
+				"method": "POST"
+			},
+			{
+				"id": "7794ea98-fe78-4294-9f77-ea4d25361dd8",
+				"method": "GET"
+			},
+			{
+				"id": "348b9faf-87f5-4e49-b233-98464fb95bf1",
+				"method": "PUT"
+			},
+			{
+				"id": "22dcf7ee-99f7-4ca3-be99-28b91d923af4",
+				"method": "GET"
+			},
+			{
+				"id": "a5c151cc-6604-4928-a39a-60db13eee478",
+				"method": "GET"
+			},
+			{
+				"id": "661470a2-6487-4398-ae24-01f17e2d7b0b",
+				"method": "DELETE"
+			},
+			{
+				"id": "c7652b6c-d212-4ce9-8020-685e50206c2e",
+				"method": "DELETE"
+			},
+			{
+				"id": "f7e707b1-d7e6-4013-866f-46454998cbb0",
+				"method": "DELETE"
+			},
+			{
+				"id": "665bc465-eeab-4682-b0ac-44be04ff3c13",
+				"method": "DELETE"
+			}
+		]
+	}
+}
